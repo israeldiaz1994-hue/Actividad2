@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aplicación para organizar y administrar tareas personales.">
+  <title>TaskManager | Gestión de tareas</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a href="#" class="brand" aria-label="TaskManager, inicio">
+      <span class="brand-icon">✓</span>
+      <span>
+        <strong>TaskManager</strong>
+        <small>Organiza tu día</small>
+      </span>
+    </a>
+    <span class="local-badge">● Datos locales</span>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <p class="eyebrow">MI ESPACIO DE TRABAJO</p>
+      <h1>Mis tareas</h1>
+      <p>Organiza tus actividades y alcanza tus objetivos.</p>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="dashboard" aria-label="Resumen de tareas">
+      <article class="stat-card">
+        <span class="stat-icon purple">▤</span>
+        <p>Total de tareas</p>
+        <strong id="totalTasks">0</strong>
+      </article>
+      <article class="stat-card">
+        <span class="stat-icon orange">◷</span>
+        <p>Pendientes</p>
+        <strong id="pendingTasks">0</strong>
+      </article>
+      <article class="stat-card">
+        <span class="stat-icon green">✓</span>
+        <p>Completadas</p>
+        <strong id="completedTasks">0</strong>
+      </article>
+    </section>
+
+    <!-- Formulario de creación y edición -->
+    <section class="panel" id="formPanel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PLANIFICACIÓN</p>
+          <h2 id="formTitle">Agregar nueva tarea</h2>
+        </div>
+      </div>
+
+      <form id="taskForm">
+        <input type="hidden" id="taskId">
+
+        <div class="form-group">
+          <label for="title">Título *</label>
+          <input
+            type="text"
+            id="title"
+            placeholder="Ej. Estudiar JavaScript"
+            maxlength="100"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <textarea
+            id="description"
+            rows="3"
+            maxlength="500"
+            placeholder="Describe brevemente tu tarea..."
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="priority">Prioridad</label>
+          <select id="priority">
+            <option value="Alta">Alta</option>
+            <option value="Media" selected>Media</option>
+            <option value="Baja">Baja</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="saveButton">
+            + Agregar tarea
+          </button>
+          <button type="button" id="cancelButton" class="btn-secondary" hidden>
+            Cancelar
+          </button>
+        </div>
+
+        <p id="formMessage" class="message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- Lista, búsqueda, filtros y ordenamiento -->
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ORGANIZACIÓN</p>
+          <h2>Lista de tareas</h2>
+        </div>
+        <span id="taskCount" class="count-badge">0 tareas</span>
+      </div>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <label class="visually-hidden" for="searchInput">Buscar tareas</label>
+          <span aria-hidden="true">⌕</span>
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Buscar por título..."
+          >
+        </div>
+
+        <div class="filter-group">
+          <label for="statusFilter">Estado</label>
+          <select id="statusFilter">
+            <option value="Todas">Todas</option>
+            <option value="Pendientes">Pendientes</option>
+            <option value="Completadas">Completadas</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="sortSelect">Ordenar por</label>
+          <select id="sortSelect">
+            <option value="fecha">Fecha de creación</option>
+            <option value="prioridad">Prioridad</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="taskList" class="task-list"></div>
+    </section>
