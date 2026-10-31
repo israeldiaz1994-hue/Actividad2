@@ -142,3 +142,30 @@
 
       <div id="taskList" class="task-list"></div>
     </section>
+    
+    <!-- Consumo de API REST -->
+    <section class="panel api-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">INTEGRACIÓN EXTERNA</p>
+          <h2>Importar tareas de ejemplo</h2>
+        </div>
+        <span class="api-icon">↗️</span>
+      </div>
+      <p class="muted">
+        Consulta una API REST pública e importa tareas de demostración.
+        Necesitas conexión a Internet para esta función.
+      </p>
+      <button type="button" id="loadApiButton" class="btn-secondary">
+        Cargar tareas desde la API
+      </button>
+      <p id="apiMessage" class="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <footer>
+      <p>TaskManager · Proyecto académico</p>
+      <p>HTML · CSS · JavaScript Vanilla ES6+</p>
+    </footer>
+  </main>
+</body>
+</html>
